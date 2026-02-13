@@ -3,241 +3,275 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You 💌</title>
+<title>Valentine For You 💖</title>
 
 <style>
 body{
     margin:0;
-    background:#0b1020;
-    color:white;
-    font-family:sans-serif;
+    font-family: "Prompt", sans-serif;
+    background: linear-gradient(135deg,#ffd6e7,#ffeaf4);
     overflow:hidden;
+    text-align:center;
 }
 
 .page{
-    width:100vw;
-    height:100vh;
     display:none;
-    flex-direction:column;
+    width:100%;
+    height:100vh;
+    padding:20px;
+    box-sizing:border-box;
     justify-content:center;
     align-items:center;
-    position:absolute;
-    top:0;
-    left:0;
-    text-align:center;
-    padding:20px;
+    flex-direction:column;
 }
 
-.active{ display:flex; }
+.active{
+    display:flex;
+}
 
 button{
-    position:absolute;
-    bottom:40px;
-    right:40px;
     font-size:28px;
-    padding:10px 18px;
+    padding:12px 25px;
     border:none;
-    border-radius:40px;
-    background:white;
-}
-
-.start-btn{
-    position:static;
-    font-size:32px;
-    padding:15px 30px;
-}
-
-/* หน้า1 */
-.row{
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
-
-.img{
-    width:120px;
-    height:120px;
-    object-fit:cover;
-    border:6px solid gold;
+    border-radius:20px;
+    background:#ff7eb9;
+    color:white;
+    margin-top:20px;
 }
 
 input{
+    font-size:20px;
     padding:10px;
-    font-size:18px;
+    border-radius:15px;
+    border:1px solid #ccc;
     text-align:center;
-    border-radius:10px;
-    border:none;
 }
 
-/* ตัวหนังสือพิมพ์ทีละตัว */
-.type{
-    font-size:28px;
-    min-height:60px;
+/* เอฟเฟกต์พิมพ์ทีละตัว */
+.typewriter{
+    font-size:22px;
+    white-space:pre-line;
+    max-width:90%;
 }
 
-/* หน้า4 รูป 3 แถวฟันปลา + เลื่อน */
-.slider{
-    width:200%;
+/* รูปหน้า1 */
+.img-top, .img-bottom{
+    width:70%;
+    max-width:300px;
+    border-radius:15px;
+    margin:10px 0;
+}
+
+/* หน้า4 */
+.gallery-wrapper{
+    width:100%;
+    overflow:hidden;
+}
+
+.row{
     display:flex;
-    flex-direction:column;
-    gap:20px;
-    animation:move 7s linear infinite;
+    animation: scroll 25s linear infinite;
 }
 
-@keyframes move{
-    from{ transform:translateX(-10%); }
-    to{ transform:translateX(10%); }
+.row img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:15px;
+    margin:5px;
 }
 
-.grid-row{
-    display:flex;
-    gap:15px;
+@keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
 }
 
-.grid-row:nth-child(even){
-    margin-left:60px;
-}
-
-/* อิโมจิลอย */
+/* emoji ลอย */
 .emoji{
     position:fixed;
-    bottom:-40px;
-    animation:floatUp linear infinite;
-    opacity:0.9;
+    font-size:24px;
+    animation: floatUp 5s linear infinite;
 }
 
 @keyframes floatUp{
-    from{ transform:translateY(0); opacity:1; }
-    to{ transform:translateY(-110vh); opacity:0; }
+    0%{transform:translateY(100vh);opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bgm" src="music.mp3"></audio>
+<!-- เพลง -->
+<iframe id="music" width="0" height="0"
+src=""
+frameborder="0"
+allow="autoplay">
+</iframe>
 
 <!-- หน้าเริ่ม -->
 <div class="page active" id="start">
-    <h1>เริ่มเลยยย</h1>
-    <button class="start-btn" onclick="start()">เริ่ม</button>
+    <h1>กดเริ่มก่อนน้า 💕</h1>
+    <button onclick="startMusic()">เริ่ม</button>
 </div>
 
 <!-- หน้า1 ใส่รหัส -->
-<div class="page" id="p1">
-    <div class="row">
-        <img src="photo.jpg" class="img">
-        <div>
-            <div>วันเกิดเธอคือรหัส💖</div>
-            <input type="password" id="pass">
-        </div>
-        <img src="photo.jpg" class="img">
-    </div>
-    <button onclick="check()">➡️</button>
+<div class="page" id="page1">
+    <img src="IMG_1992.jpeg" class="img-top">
+    <h3>ลองใส่วันเกิดเธอดูจิ 💌</h3>
+    <input type="password" id="pass">
+    <img src="IMG_1993.jpeg" class="img-bottom">
+    <button onclick="checkPass()">➡️</button>
 </div>
 
 <!-- หน้า2 -->
-<div class="page" id="p2">
-    <div class="type" id="text2"></div>
-    <button onclick="next(3)">➡️</button>
+<div class="page" id="page2">
+    <div class="typewriter" id="text2"></div>
+    <button onclick="nextPage(3)">➡️</button>
 </div>
 
 <!-- หน้า3 -->
-<div class="page" id="p3">
-    <div class="type" id="text3"></div>
-    <button onclick="next(4)">➡️</button>
+<div class="page" id="page3">
+    <div class="typewriter" id="text3"></div>
+    <button onclick="nextPage(4)">➡️</button>
 </div>
 
-<!-- หน้า4 รวมรูป -->
-<div class="page" id="p4">
+<!-- หน้า4 -->
+<div class="page" id="page4">
+    <div class="gallery-wrapper">
+        <div class="row">
+            <!-- แถว1 -->
+            <img src="IMG_9257.jpeg">
+            <img src="IMG_1965.jpeg">
+            <img src="IMG_4732.jpeg">
+            <img src="IMG_5565.jpeg">
+            <img src="IMG_1988.jpeg">
+            <img src="IMG_5234.jpeg">
+            <img src="IMG_5705.jpeg">
+            <img src="IMG_4872.jpeg">
+            <img src="IMG_9662.jpeg">
 
-    <div class="slider">
-        <div class="grid-row">
-            <img src="photo.jpg" class="img">
-            <img src="photo.jpg" class="img">
-            <img src="photo.jpg" class="img">
+            <!-- duplicate เพื่อให้ลูปเนียน -->
+            <img src="IMG_9257.jpeg">
+            <img src="IMG_1965.jpeg">
+            <img src="IMG_4732.jpeg">
+            <img src="IMG_5565.jpeg">
+            <img src="IMG_1988.jpeg">
+            <img src="IMG_5234.jpeg">
+            <img src="IMG_5705.jpeg">
+            <img src="IMG_4872.jpeg">
+            <img src="IMG_9662.jpeg">
         </div>
-        <div class="grid-row">
-            <img src="photo.jpg" class="img">
-            <img src="photo.jpg" class="img">
-            <img src="photo.jpg" class="img">
+
+        <div class="row" style="animation-direction:reverse;">
+            <!-- แถว2 -->
+            <img src="IMG_5565.jpeg">
+            <img src="IMG_1988.jpeg">
+            <img src="IMG_5234.jpeg">
+            <img src="IMG_5705.jpeg">
+            <img src="IMG_4872.jpeg">
+            <img src="IMG_9662.jpeg">
+            <img src="IMG_9257.jpeg">
+            <img src="IMG_1965.jpeg">
+            <img src="IMG_4732.jpeg">
+
+            <img src="IMG_5565.jpeg">
+            <img src="IMG_1988.jpeg">
+            <img src="IMG_5234.jpeg">
+            <img src="IMG_5705.jpeg">
+            <img src="IMG_4872.jpeg">
+            <img src="IMG_9662.jpeg">
+            <img src="IMG_9257.jpeg">
+            <img src="IMG_1965.jpeg">
+            <img src="IMG_4732.jpeg">
         </div>
-        <div class="grid-row">
-            <img src="photo.jpg" class="img">
-            <img src="photo.jpg" class="img">
-            <img src="photo.jpg" class="img">
+
+        <div class="row">
+            <!-- แถว3 -->
+            <img src="IMG_5705.jpeg">
+            <img src="IMG_4872.jpeg">
+            <img src="IMG_9662.jpeg">
+            <img src="IMG_9257.jpeg">
+            <img src="IMG_1965.jpeg">
+            <img src="IMG_4732.jpeg">
+            <img src="IMG_5565.jpeg">
+            <img src="IMG_1988.jpeg">
+            <img src="IMG_5234.jpeg">
+
+            <img src="IMG_5705.jpeg">
+            <img src="IMG_4872.jpeg">
+            <img src="IMG_9662.jpeg">
+            <img src="IMG_9257.jpeg">
+            <img src="IMG_1965.jpeg">
+            <img src="IMG_4732.jpeg">
+            <img src="IMG_5565.jpeg">
+            <img src="IMG_1988.jpeg">
+            <img src="IMG_5234.jpeg">
         </div>
     </div>
 
-    <button onclick="backStart()">💌</button>
+    <button onclick="nextPage(1)">💌</button>
 </div>
 
 <script>
-/* เริ่มเว็บ + เพลงวิที่20 */
-function start(){
-    document.getElementById("start").classList.remove("active");
-    document.getElementById("p1").classList.add("active");
 
-    const audio = document.getElementById("bgm");
-    audio.currentTime = 20;
-    audio.play();
+function startMusic(){
+    document.getElementById("music").src =
+    "https://www.youtube.com/embed/guCCAF-fkNI?start=20&autoplay=1";
+    nextPage(1);
 }
 
-/* เช็ครหัส */
-function check(){
-    const pass = document.getElementById("pass").value;
-    if(pass === "100643"){   // เปลี่ยนรหัสตรงนี้ได้
-        next(2);
-        typeText("text2","รู้ไหมว่าเธอสำคัญกับเรามากแค่ไหน 💕");
+function nextPage(num){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("page"+num).classList.add("active");
+
+    if(num===2) typeWriter("text2",`
+    🌻Happy Valentine Day🌹<br>
+สุขสันต์วันวาเลนไทน์นะค้าบ ขอให้เป็นเทศกาลแห่งความรักที่มีความสุขนะ <br>
+ขอให้มีแต่ช่วงเวลาที่สวยงาม โอบล้อมไปด้วยความทรงจำดีๆ <br>
+ขอให้มีแต่ความสดใสร่าเริง ยิ้มให้กว้างกว่าทุกๆวัน <br>
+แล้วก็ขอให้เธออยู่เป็นของขวัญวันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ <br>
+เค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป จะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้`);<br>
+
+    if(num===3) typeWriter("text3",`
+                           ขอบคุณเธอมากๆนะที่เข้ามาในชีวิตเค้า <br>
+        อยู่เป็นของขวัญให้เราไปทุกๆเทศกาลเลยนะ <br>
+เค้ารักเธอนะ🫶🏻❤️`); <br>
+}
+
+function checkPass(){
+    if(document.getElementById("pass").value==="100643"){
+        nextPage(2);
     }else{
-        alert("รหัสไม่ถูกค้าบคนฉวย😁");
+        alert("ใส่ใหม่อีกทีน้าา 💕");
     }
 }
 
-/* เปลี่ยนหน้า */
-function next(page){
-    document.querySelector(".active").classList.remove("active");
-    document.getElementById("p"+page).classList.add("active");
-
-    if(page===3){
-        typeText("text3","เรารักเธอมากจริงๆนะ ขอบคุณที่อยู่ด้วยกันเสมอ 💖");
-    }
-}
-
-/* กลับหน้าแรก */
-function backStart(){
-    document.querySelector(".active").classList.remove("active");
-    document.getElementById("start").classList.add("active");
-}
-
-/* พิมพ์ทีละตัว */
-function typeText(id,text){
+function typeWriter(id,text){
+    let el=document.getElementById(id);
+    el.innerHTML="";
     let i=0;
-    document.getElementById(id).innerHTML="";
-    const interval=setInterval(()=>{
-        document.getElementById(id).innerHTML += text[i];
-        i++;
-        if(i>=text.length) clearInterval(interval);
-    },50);
+    let speed=40;
+    function typing(){
+        if(i<text.length){
+            el.innerHTML+=text.charAt(i);
+            i++;
+            setTimeout(typing,speed);
+        }
+    }
+    typing();
 }
 
-/* อิโมจิลอย */
-function createEmoji(){
-    const emoji=document.createElement("div");
-    emoji.classList.add("emoji");
-
-    const list=["❤️","💖","😊","😍","😘","🥰"];
-    emoji.innerText=list[Math.floor(Math.random()*list.length)];
-
+/* emoji ลอย */
+setInterval(()=>{
+    let emoji=document.createElement("div");
+    emoji.className="emoji";
     emoji.style.left=Math.random()*100+"vw";
-    emoji.style.fontSize=(20+Math.random()*30)+"px";
-    emoji.style.animationDuration=(4+Math.random()*4)+"s";
-
+    emoji.innerText=["❤️","💖","😊","😍","😘","🥰"][Math.floor(Math.random()*6)];
     document.body.appendChild(emoji);
+    setTimeout(()=>emoji.remove(),5000);
+},800);
 
-    setTimeout(()=>{ emoji.remove(); },8000);
-}
-setInterval(createEmoji,500);
 </script>
 
 </body>
