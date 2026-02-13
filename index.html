@@ -33,45 +33,14 @@ body{
 .number{
     position:absolute;
     top:40px;
-    font-size:80px;
+    font-size:70px;
     opacity:0.8;
 }
 
 .text{
-    margin:20px 0;
     font-size:32px;
     text-align:center;
-}
-
-.row{
-    display:flex;
-    gap:40px;
-    margin:20px 0;
-}
-
-.img{
-    width:160px;
-    height:160px;
-    border:12px solid gold;
-    object-fit:cover;
-}
-
-/* หน้า 2,3,4 รูปเอียง */
-.tilt-left{ transform:rotate(-10deg); }
-.tilt-right{ transform:rotate(10deg); }
-
-/* หน้า 5 เลื่อน */
-.scroll-container{
-    position:absolute;
-    width:200%;
-    display:flex;
-    gap:40px;
-    animation:scroll 15s linear infinite;
-}
-
-@keyframes scroll{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(-50%); }
+    padding:0 20px;
 }
 
 button{
@@ -84,155 +53,142 @@ button{
     border:none;
     border-radius:50px;
 }
+
+/* หน้า 5 รูป 3 แถวฟันปลา */
+.grid{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.row{
+    display:flex;
+    gap:20px;
+}
+
+.row:nth-child(even){
+    margin-left:60px;
+}
+
+.img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border:6px solid gold;
+}
+
+/* อิโมจิลอย */
+.emoji{
+    position:fixed;
+    bottom:-50px;
+    font-size:24px;
+    animation:floatUp linear infinite;
+    opacity:0.8;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- เพลง -->
+<audio id="bgm" src="music.mp3"></audio>
+
 <!-- หน้า1 -->
 <div class="page active" id="p1">
 <div class="number">1</div>
-
-<div class="row">
-<img src="photo.jpg" class="img">
-<div class="text">ข้อความ ... ใส่รหัส...</div>
-<img src="photo.jpg" class="img">
-</div>
-
+<div class="text">ข้อความแรกของเรา 💌</div>
 <button onclick="next()">➡️</button>
 </div>
-
 
 <!-- หน้า2 -->
 <div class="page" id="p2">
 <div class="number">2</div>
-
-<div class="row">
-<img src="photo.jpg" class="img tilt-left">
-<img src="photo.jpg" class="img tilt-right">
-</div>
-
-<div class="text">ข้อความบิ้วอารมณ์</div>
-
-<div class="row">
-<img src="photo.jpg" class="img tilt-left">
-<img src="photo.jpg" class="img tilt-right">
-</div>
-
+<div class="text">บิ้วอารมณ์ต่ออีกนิด 💕</div>
 <button onclick="next()">➡️</button>
 </div>
-
 
 <!-- หน้า3 -->
 <div class="page" id="p3">
 <div class="number">3</div>
-
-<div class="row">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-</div>
-
-<div class="text">ความในใจ</div>
-
-<div class="row">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-</div>
-
+<div class="text">ความในใจที่อยากบอก 💖</div>
 <button onclick="next()">➡️</button>
 </div>
 
-
-<!-- หน้า4 -->
+<!-- หน้า5 (สุดท้าย) -->
 <div class="page" id="p4">
 <div class="number">4</div>
 
-<div class="row">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
+<div class="grid">
+    <div class="row">
+        <img src="photo.jpg" class="img">
+        <img src="photo.jpg" class="img">
+        <img src="photo.jpg" class="img">
+    </div>
+
+    <div class="row">
+        <img src="photo.jpg" class="img">
+        <img src="photo.jpg" class="img">
+        <img src="photo.jpg" class="img">
+    </div>
+
+    <div class="row">
+        <img src="photo.jpg" class="img">
+        <img src="photo.jpg" class="img">
+        <img src="photo.jpg" class="img">
+    </div>
 </div>
 
-<div class="text">บอกรัก</div>
-
-<div class="row">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
 </div>
-
-<button onclick="next()">➡️</button>
-</div>
-
-
-<!-- หน้า5 -->
-<div class="page" id="p5">
-<div class="number">5</div>
-
-<div class="scroll-container">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-<img src="photo.jpg" class="img">
-</div>
-
-<button onclick="home()">💌</button>
-</div>
-
 
 <script>
 let current = 1;
 
+/* เปลี่ยนหน้า */
 function next(){
     document.getElementById("p"+current).classList.remove("active");
     current++;
     document.getElementById("p"+current).classList.add("active");
+
+    // เล่นเพลงเมื่อเข้าหน้าแรกที่กด
+    const audio = document.getElementById("bgm");
+    if(audio.paused){
+        audio.currentTime = 20; // เริ่มที่วินาที 20
+        audio.play();
+    }
 }
 
-function home(){
-    document.getElementById("p"+current).classList.remove("active");
-    current = 1;
-    document.getElementById("p1").classList.add("active");
-}
-    function createEmoji() {
+/* อิโมจิลอย */
+function createEmoji(){
     const emoji = document.createElement("div");
     emoji.classList.add("emoji");
 
-    const emojis = ["💖","💘","💝","🌸","✨","💕"];
-    emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    const emojis = ["💖","💘","💝","✨","🌸","💕"];
+    emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
 
-    emoji.style.left = Math.random() * 100 + "vw";
-    emoji.style.animationDuration = (3 + Math.random() * 5) + "s";
-    emoji.style.fontSize = (20 + Math.random() * 30) + "px";
+    emoji.style.left = Math.random()*100 + "vw";
+    emoji.style.animationDuration = (4 + Math.random()*4) + "s";
+    emoji.style.fontSize = (20 + Math.random()*30) + "px";
 
     document.body.appendChild(emoji);
 
-    setTimeout(() => {
+    setTimeout(()=>{
         emoji.remove();
-    }, 8000);
+    },8000);
 }
 
-setInterval(createEmoji, 500);
+setInterval(createEmoji,500);
 </script>
-.emoji {
-    position: fixed;
-    bottom: -50px;
-    font-size: 24px;
-    animation: floatUp linear infinite;
-    opacity: 0.8;
-}
 
-@keyframes floatUp {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
-}
 </body>
 </html>
