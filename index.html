@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="th">
-<head> 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine For You 💖</title>
+<title>Valentine 💖</title>
 
 <style>
 body{
     margin:0;
-    font-family: "Prompt", sans-serif;
+    font-family:sans-serif;
     background: linear-gradient(135deg,#ffd6e7,#ffeaf4);
     overflow:hidden;
     text-align:center;
@@ -18,19 +18,17 @@ body{
     display:none;
     width:100%;
     height:100vh;
-    padding:20px;
-    box-sizing:border-box;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    padding:20px;
+    box-sizing:border-box;
 }
 
-.active{
-    display:flex;
-}
+#start{display:flex;}
 
 button{
-    font-size:28px;
+    font-size:26px;
     padding:12px 25px;
     border:none;
     border-radius:20px;
@@ -47,49 +45,47 @@ input{
     text-align:center;
 }
 
-/* เอฟเฟกต์พิมพ์ทีละตัว */
-.typewriter{
-    font-size:22px;
-    white-space:pre-line;
-    max-width:90%;
-}
-
-/* รูปหน้า1 */
-.img-top, .img-bottom{
+.img-top,.img-bottom{
     width:70%;
     max-width:300px;
     border-radius:15px;
     margin:10px 0;
 }
 
+.typewriter{
+    white-space:pre-line;
+    font-size:20px;
+    max-width:90%;
+}
+
 /* หน้า4 */
-.gallery-wrapper{
+.gallery{
     width:100%;
     overflow:hidden;
 }
 
 .row{
     display:flex;
-    animation: scroll 25s linear infinite;
+    animation: slide 25s linear infinite;
 }
 
 .row img{
-    width:110px;
-    height:110px;
+    width:100px;
+    height:100px;
     object-fit:cover;
     border-radius:15px;
     margin:5px;
 }
 
-@keyframes scroll{
+@keyframes slide{
     0%{transform:translateX(0);}
     100%{transform:translateX(-50%);}
 }
 
-/* emoji ลอย */
+/* emoji */
 .emoji{
     position:fixed;
-    font-size:24px;
+    font-size:22px;
     animation: floatUp 5s linear infinite;
 }
 
@@ -102,17 +98,12 @@ input{
 
 <body>
 
-<!-- เพลง -->
-<iframe id="music" width="0" height="0"
-src=""
-frameborder="0"
-allow="autoplay">
-</iframe>
+<iframe id="music" width="0" height="0" allow="autoplay"></iframe>
 
 <!-- หน้าเริ่ม -->
-<div class="page active" id="start">
-    <h1>กดเริ่มก่อนน้า 💕</h1>
-    <button onclick="startMusic()">เริ่ม</button>
+<div class="page" id="start">
+    <h1>กดเริ่มก่อนน๊า 💕</h1>
+    <button onclick="startApp()">เริ่ม</button>
 </div>
 
 <!-- หน้า1 ใส่รหัส -->
@@ -127,20 +118,19 @@ allow="autoplay">
 <!-- หน้า2 -->
 <div class="page" id="page2">
     <div class="typewriter" id="text2"></div>
-    <button onclick="nextPage(3)">➡️</button>
+    <button onclick="showPage(3)">➡️</button>
 </div>
 
 <!-- หน้า3 -->
 <div class="page" id="page3">
     <div class="typewriter" id="text3"></div>
-    <button onclick="nextPage(4)">➡️</button>
+    <button onclick="showPage(4)">➡️</button>
 </div>
 
 <!-- หน้า4 -->
 <div class="page" id="page4">
-    <div class="gallery-wrapper">
+    <div class="gallery">
         <div class="row">
-            <!-- แถว1 -->
             <img src="IMG_9257.jpeg">
             <img src="IMG_1965.jpeg">
             <img src="IMG_4732.jpeg">
@@ -151,7 +141,7 @@ allow="autoplay">
             <img src="IMG_4872.jpeg">
             <img src="IMG_9662.jpeg">
 
-            <!-- duplicate เพื่อให้ลูปเนียน -->
+            <!-- duplicate -->
             <img src="IMG_9257.jpeg">
             <img src="IMG_1965.jpeg">
             <img src="IMG_4732.jpeg">
@@ -161,80 +151,28 @@ allow="autoplay">
             <img src="IMG_5705.jpeg">
             <img src="IMG_4872.jpeg">
             <img src="IMG_9662.jpeg">
-        </div>
-
-        <div class="row" style="animation-direction:reverse;">
-            <!-- แถว2 -->
-            <img src="IMG_5565.jpeg">
-            <img src="IMG_1988.jpeg">
-            <img src="IMG_5234.jpeg">
-            <img src="IMG_5705.jpeg">
-            <img src="IMG_4872.jpeg">
-            <img src="IMG_9662.jpeg">
-            <img src="IMG_9257.jpeg">
-            <img src="IMG_1965.jpeg">
-            <img src="IMG_4732.jpeg">
-
-            <img src="IMG_5565.jpeg">
-            <img src="IMG_1988.jpeg">
-            <img src="IMG_5234.jpeg">
-            <img src="IMG_5705.jpeg">
-            <img src="IMG_4872.jpeg">
-            <img src="IMG_9662.jpeg">
-            <img src="IMG_9257.jpeg">
-            <img src="IMG_1965.jpeg">
-            <img src="IMG_4732.jpeg">
-        </div>
-
-        <div class="row">
-            <!-- แถว3 -->
-            <img src="IMG_5705.jpeg">
-            <img src="IMG_4872.jpeg">
-            <img src="IMG_9662.jpeg">
-            <img src="IMG_9257.jpeg">
-            <img src="IMG_1965.jpeg">
-            <img src="IMG_4732.jpeg">
-            <img src="IMG_5565.jpeg">
-            <img src="IMG_1988.jpeg">
-            <img src="IMG_5234.jpeg">
-
-            <img src="IMG_5705.jpeg">
-            <img src="IMG_4872.jpeg">
-            <img src="IMG_9662.jpeg">
-            <img src="IMG_9257.jpeg">
-            <img src="IMG_1965.jpeg">
-            <img src="IMG_4732.jpeg">
-            <img src="IMG_5565.jpeg">
-            <img src="IMG_1988.jpeg">
-            <img src="IMG_5234.jpeg">
         </div>
     </div>
-
-    <button onclick="nextPage(1)">💌</button>
+    <button onclick="showPage(1)">💌</button>
 </div>
 
 <script>
 
-function startMusic(){
-    // เล่นเพลงจากวินาทีที่ 20
+function startApp(){
     document.getElementById("music").src =
     "https://www.youtube.com/embed/guCCAF-fkNI?start=20&autoplay=1";
 
-    // ซ่อนหน้าเริ่ม
-    document.getElementById("start").classList.remove("active");
-
-    // แสดงหน้าใส่รหัส
-    document.getElementById("page1").classList.add("active");
+    showPage(1);
 }
 
-function nextPage(num){
-    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-    document.getElementById("page"+num).classList.add("active");
+function showPage(num){
+    document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+    document.getElementById("page"+num).style.display="flex";
 
     if(num===2){
         typeWriter("text2",`🌻Happy Valentine Day🌹
 สุขสันต์วันวาเลนไทน์นะค้าบ ขอให้เป็นเทศกาลแห่งความรักที่มีความสุขนะ ขอให้มีแต่ช่วงเวลาที่สวยงาม โอบล้อมไปด้วยความทรงจำของเรา 
-ขอให้อมีแต่ความสดใสร่าเริง ยิ้มให้กว้างกว่าทุกๆวัน แล้วก็ขอให้เธออยู่เป็นของขวัญวันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ เค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป จะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้`);
+ขอให้มีแต่ความสดใสร่าเริง ยิ้มให้กว้างกว่าทุกๆวัน แล้วก็ขอให้เธออยู่เป็นของขวัญวันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ เค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป จะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้`);
     }
 
     if(num===3){
@@ -245,7 +183,7 @@ function nextPage(num){
 
 function checkPass(){
     if(document.getElementById("pass").value==="100643"){
-        nextPage(2);
+        showPage(2);
     }else{
         alert("ใส่ใหม่อีกทีน้าา 💕");
     }
@@ -255,25 +193,27 @@ function typeWriter(id,text){
     let el=document.getElementById(id);
     el.innerHTML="";
     let i=0;
-    let speed=40;
     function typing(){
         if(i<text.length){
             el.innerHTML+=text.charAt(i);
             i++;
-            setTimeout(typing,speed);
+            setTimeout(typing,40);
         }
     }
     typing();
 }
 
-/* emoji ลอย */
+/* emoji */
 setInterval(()=>{
-    let emoji=document.createElement("div");
-    emoji.className="emoji";
-    emoji.style.left=Math.random()*100+"vw";
-    emoji.innerText=["❤️","💖","😊","😍","😘","🥰"][Math.floor(Math.random()*6)];
-    document.body.appendChild(emoji);
-    setTimeout(()=>emoji.remove(),5000);
+    let e=document.createElement("div");
+    e.className="emoji";
+    e.style.left=Math.random()*100+"vw";
+    e.innerText=["❤️","💖","😊","😍","😘","🥰"][Math.floor(Math.random()*6)];
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),5000);
 },800);
 
 </script>
+
+</body>
+</html>
