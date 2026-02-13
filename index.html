@@ -83,9 +83,10 @@ input{
     margin:6px;
 }
 
-.row1 .track{animation:slideLeft 60s linear infinite;}
-.row2 .track{animation:slideRight 55s linear infinite;}
-.row3 .track{animation:slideLeft 60s linear infinite;}
+/* ความเร็วตามที่ขอ */
+.row1 .track{animation:slideLeft 55s linear infinite;}
+.row2 .track{animation:slideRight 50s linear infinite;}
+.row3 .track{animation:slideLeft 55s linear infinite;}
 
 @keyframes slideLeft{
     from{transform:translateX(0);}
@@ -111,7 +112,8 @@ input{
 
 <body>
 
-<iframe id="music" width="0" height="0" allow="autoplay"></iframe>
+<!-- เพลง -->
+<audio id="bgmusic" src="music.mp3"></audio>
 
 <!-- หน้าเริ่ม -->
 <div class="page" id="start">
@@ -124,10 +126,7 @@ input{
     <img src="IMG_1992.jpeg" class="img-top">
     <h3>ลองใส่วันเกิดเธอดูจิ 💌</h3>
 
-    <!-- ช่องรหัส -->
     <input type="password" id="pass">
-
-    <!-- ปุ่มอยู่ใต้ช่องรหัส -->
     <button onclick="checkPass()">➡️</button>
 
     <img src="IMG_1993.jpeg" class="img-bottom">
@@ -147,52 +146,45 @@ input{
 
 <!-- หน้า4 -->
 <div class="page" id="page4">
-
 <div class="gallery-wrapper">
 
-<div class="row row1">
-<div class="track">
+<div class="row row1"><div class="track">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
-</div>
-</div>
+</div></div>
 
-<div class="row row2">
-<div class="track">
+<div class="row row2"><div class="track">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
-</div>
-</div>
+</div></div>
 
-<div class="row row3">
-<div class="track">
+<div class="row row3"><div class="track">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
-</div>
-</div>
+</div></div>
 
 </div>
-
 <button onclick="showPage(1)">💌</button>
 </div>
 
 <script>
 
 function startApp(){
-document.getElementById("music").src=
-"https://www.youtube.com/embed/guCCAF-fkNI?start=20&autoplay=1";
+let music=document.getElementById("bgmusic");
+music.currentTime=20;
+music.play();
 showPage(1);
 }
 
