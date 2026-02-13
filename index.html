@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 💗</title>
+
+<style>
+body{
+  margin:0;
+  font-family:sans-serif;
+  text-align:center;
+  background:linear-gradient(to bottom,#ffd6e7,#fff);
+  overflow-x:hidden;
+}
+
+.page{
+  display:none;
+  padding:30px;
+}
+
+.active{
+  display:block;
+}
+
+button{
+  padding:10px 20px;
+  font-size:18px;
+  border:none;
+  border-radius:20px;
+  background:#ff6fa5;
+  color:white;
+  margin-top:20px;
+}
+
+img{
+  width:120px;
+  margin:10px;
+  border-radius:15px;
+}
+
+.arrow{
+  font-size:30px;
+  margin-top:20px;
+  background:none;
+  color:#ff4f8b;
+}
+
+.love-btn{
+  font-size:30px;
+  background:none;
+  color:red;
+}
+
+/* หน้า 5 สไลด์ */
+.slider{
+  display:flex;
+  width:200%;
+  animation:slide 15s linear infinite;
+}
+
+.slider img{
+  width:150px;
+  margin:15px;
+}
+
+@keyframes slide{
+  from{ transform:translateX(-50%); }
+  to{ transform:translateX(0); }
+}
+</style>
+</head>
+<body>
+
+<audio id="bgm" src="love.mp3"></audio>
+
+<!-- หน้าเริ่ม -->
+<div class="page active" id="start">
+  <h1>กดเริ่มก่อนนะ 💗</h1>
+  <button onclick="startMusic()">เริ่ม</button>
+</div>
+
+<!-- หน้า1 -->
+<div class="page" id="page1">
+  <h2>ใส่รหัสเพื่อเข้า 💌</h2>
+  <input type="password" id="pass" placeholder="ใส่รหัส">
+  <br>
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <br>
+  <button class="arrow" onclick="checkPass()">➡️</button>
+</div>
+
+<!-- หน้า2 -->
+<div class="page" id="page2">
+  <h2 id="text2"></h2>
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <br>
+  <button class="arrow" onclick="nextPage(3)">➡️</button>
+</div>
+
+<!-- หน้า3 -->
+<div class="page" id="page3">
+  <h2 id="text3"></h2>
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <br>
+  <button class="arrow" onclick="nextPage(4)">➡️</button>
+</div>
+
+<!-- หน้า4 -->
+<div class="page" id="page4">
+  <h2 id="text4"></h2>
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <img src="https://via.placeholder.com/120">
+  <br>
+  <button class="arrow" onclick="nextPage(5)">➡️</button>
+</div>
+
+<!-- หน้า5 -->
+<div class="page" id="page5">
+  <h2>ทุกช่วงเวลาของเรา 💞</h2>
+  <div class="slider">
+    <img src="https://via.placeholder.com/150">
+    <img src="https://via.placeholder.com/150">
+    <img src="https://via.placeholder.com/150">
+    <img src="https://via.placeholder.com/150">
+    <!-- ทำซ้ำเพื่อให้เลื่อนลื่น -->
+    <img src="https://via.placeholder.com/150">
+    <img src="https://via.placeholder.com/150">
+    <img src="https://via.placeholder.com/150">
+    <img src="https://via.placeholder.com/150">
+  </div>
+  <button class="love-btn" onclick="goHome()">💌</button>
+</div>
+
+<script>
+function startMusic(){
+  document.getElementById("start").classList.remove("active");
+  document.getElementById("page1").classList.add("active");
+  let music = document.getElementById("bgm");
+  music.currentTime = 20;
+  music.play();
+}
+
+function checkPass(){
+  let password = document.getElementById("pass").value;
+  if(password === "1234"){
+    nextPage(2);
+    typeWriter("text2","ตั้งแต่มีเธอเข้ามา ชีวิตเค้าก็พิเศษขึ้นทุกวัน 💗");
+  }else{
+    alert("รหัสไม่ถูกนะงับ 💔");
+  }
+}
+
+function nextPage(page){
+  let pages = document.querySelectorAll(".page");
+  pages.forEach(p => p.classList.remove("active"));
+  document.getElementById("page"+page).classList.add("active");
+
+  if(page==3){
+    typeWriter("text3","เค้าอาจไม่เก่งที่สุด แต่จะรักเธอที่สุดนะ 🥺");
+  }
+  if(page==4){
+    typeWriter("text4","ขออยู่ข้างเธอไปเรื่อย ๆ แบบนี้ตลอดไปได้ไหม 💞");
+  }
+}
+
+function goHome(){
+  let pages = document.querySelectorAll(".page");
+  pages.forEach(p => p.classList.remove("active"));
+  document.getElementById("start").classList.add("active");
+}
+
+function typeWriter(id,text){
+  let i=0;
+  document.getElementById(id).innerHTML="";
+  function typing(){
+    if(i<text.length){
+      document.getElementById(id).innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing,50);
+    }
+  }
+  typing();
+}
+</script>
+
+</body>
+</html>
