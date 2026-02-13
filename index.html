@@ -81,7 +81,7 @@ input{
     display:flex;
     flex-direction:column;
     gap:20px;
-    animation:move 20s linear infinite;
+    animation:move 7s linear infinite;
 }
 
 @keyframes move{
@@ -119,7 +119,7 @@ input{
 
 <!-- หน้าเริ่ม -->
 <div class="page active" id="start">
-    <h1>กดเริ่มก่อนนะ 😊</h1>
+    <h1>เริ่มเลยยย</h1>
     <button class="start-btn" onclick="start()">เริ่ม</button>
 </div>
 
@@ -128,7 +128,7 @@ input{
     <div class="row">
         <img src="photo.jpg" class="img">
         <div>
-            <div>ใส่รหัสเพื่อเข้า 💖</div>
+            <div>วันเกิดเธอคือรหัส💖</div>
             <input type="password" id="pass">
         </div>
         <img src="photo.jpg" class="img">
@@ -186,11 +186,11 @@ function start(){
 /* เช็ครหัส */
 function check(){
     const pass = document.getElementById("pass").value;
-    if(pass === "1234"){   // เปลี่ยนรหัสตรงนี้ได้
+    if(pass === "100643"){   // เปลี่ยนรหัสตรงนี้ได้
         next(2);
         typeText("text2","รู้ไหมว่าเธอสำคัญกับเรามากแค่ไหน 💕");
     }else{
-        alert("รหัสไม่ถูกนะ 😊");
+        alert("รหัสไม่ถูกค้าบคนฉวย😁");
     }
 }
 
