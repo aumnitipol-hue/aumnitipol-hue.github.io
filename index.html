@@ -3,193 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love 💗</title>
+<title>Love</title>
 
 <style>
 body{
-  margin:0;
-  font-family:sans-serif;
-  text-align:center;
-  background:linear-gradient(to bottom,#ffd6e7,#fff);
-  overflow-x:hidden;
+    margin:0;
+    background:#070d1a;
+    color:white;
+    font-family:sans-serif;
+    overflow:hidden;
 }
 
 .page{
-  display:none;
-  padding:30px;
+    width:100vw;
+    height:100vh;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    top:0;
+    left:0;
 }
 
 .active{
-  display:block;
+    display:flex;
+}
+
+.number{
+    position:absolute;
+    top:40px;
+    font-size:80px;
+    opacity:0.8;
+}
+
+.text{
+    margin:20px 0;
+    font-size:32px;
+    text-align:center;
+}
+
+.row{
+    display:flex;
+    gap:40px;
+    margin:20px 0;
+}
+
+.img{
+    width:160px;
+    height:160px;
+    border:12px solid gold;
+    object-fit:cover;
+}
+
+/* หน้า 2,3,4 รูปเอียง */
+.tilt-left{ transform:rotate(-10deg); }
+.tilt-right{ transform:rotate(10deg); }
+
+/* หน้า 5 เลื่อน */
+.scroll-container{
+    position:absolute;
+    width:200%;
+    display:flex;
+    gap:40px;
+    animation:scroll 15s linear infinite;
+}
+
+@keyframes scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
 }
 
 button{
-  padding:10px 20px;
-  font-size:18px;
-  border:none;
-  border-radius:20px;
-  background:#ff6fa5;
-  color:white;
-  margin-top:20px;
-}
-
-img{
-  width:120px;
-  margin:10px;
-  border-radius:15px;
-}
-
-.arrow{
-  font-size:30px;
-  margin-top:20px;
-  background:none;
-  color:#ff4f8b;
-}
-
-.love-btn{
-  font-size:30px;
-  background:none;
-  color:red;
-}
-
-/* หน้า 5 สไลด์ */
-.slider{
-  display:flex;
-  width:200%;
-  animation:slide 15s linear infinite;
-}
-
-.slider img{
-  width:150px;
-  margin:15px;
-}
-
-@keyframes slide{
-  from{ transform:translateX(-50%); }
-  to{ transform:translateX(0); }
+    position:absolute;
+    bottom:40px;
+    right:40px;
+    font-size:30px;
+    padding:10px 20px;
+    background:white;
+    border:none;
+    border-radius:50px;
 }
 </style>
 </head>
+
 <body>
 
-<audio id="bgm" src="love.mp3"></audio>
-
-<!-- หน้าเริ่ม -->
-<div class="page active" id="start">
-  <h1>กดเริ่มก่อนนะ 💗</h1>
-  <button onclick="startMusic()">เริ่ม</button>
-</div>
-
 <!-- หน้า1 -->
-<div class="page" id="page1">
-  <h2>ใส่รหัสเพื่อเข้า 💌</h2>
-  <input type="password" id="pass" placeholder="ใส่รหัส">
-  <br>
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <br>
-  <button class="arrow" onclick="checkPass()">➡️</button>
+<div class="page active" id="p1">
+<div class="number">1</div>
+
+<div class="row">
+<img src="photo.jpg" class="img">
+<div class="text">ข้อความ ... ใส่รหัส...</div>
+<img src="photo.jpg" class="img">
 </div>
+
+<button onclick="next()">➡️</button>
+</div>
+
 
 <!-- หน้า2 -->
-<div class="page" id="page2">
-  <h2 id="text2"></h2>
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <br>
-  <button class="arrow" onclick="nextPage(3)">➡️</button>
+<div class="page" id="p2">
+<div class="number">2</div>
+
+<div class="row">
+<img src="photo.jpg" class="img tilt-left">
+<img src="photo.jpg" class="img tilt-right">
 </div>
+
+<div class="text">ข้อความบิ้วอารมณ์</div>
+
+<div class="row">
+<img src="photo.jpg" class="img tilt-left">
+<img src="photo.jpg" class="img tilt-right">
+</div>
+
+<button onclick="next()">➡️</button>
+</div>
+
 
 <!-- หน้า3 -->
-<div class="page" id="page3">
-  <h2 id="text3"></h2>
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <br>
-  <button class="arrow" onclick="nextPage(4)">➡️</button>
+<div class="page" id="p3">
+<div class="number">3</div>
+
+<div class="row">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
 </div>
+
+<div class="text">ความในใจ</div>
+
+<div class="row">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+</div>
+
+<button onclick="next()">➡️</button>
+</div>
+
 
 <!-- หน้า4 -->
-<div class="page" id="page4">
-  <h2 id="text4"></h2>
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <img src="https://via.placeholder.com/120">
-  <br>
-  <button class="arrow" onclick="nextPage(5)">➡️</button>
+<div class="page" id="p4">
+<div class="number">4</div>
+
+<div class="row">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
 </div>
+
+<div class="text">บอกรัก</div>
+
+<div class="row">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+</div>
+
+<button onclick="next()">➡️</button>
+</div>
+
 
 <!-- หน้า5 -->
-<div class="page" id="page5">
-  <h2>ทุกช่วงเวลาของเรา 💞</h2>
-  <div class="slider">
-    <img src="https://via.placeholder.com/150">
-    <img src="https://via.placeholder.com/150">
-    <img src="https://via.placeholder.com/150">
-    <img src="https://via.placeholder.com/150">
-    <!-- ทำซ้ำเพื่อให้เลื่อนลื่น -->
-    <img src="https://via.placeholder.com/150">
-    <img src="https://via.placeholder.com/150">
-    <img src="https://via.placeholder.com/150">
-    <img src="https://via.placeholder.com/150">
-  </div>
-  <button class="love-btn" onclick="goHome()">💌</button>
+<div class="page" id="p5">
+<div class="number">5</div>
+
+<div class="scroll-container">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
+<img src="photo.jpg" class="img">
 </div>
 
+<button onclick="home()">💌</button>
+</div>
+
+
 <script>
-function startMusic(){
-  document.getElementById("start").classList.remove("active");
-  document.getElementById("page1").classList.add("active");
-  let music = document.getElementById("bgm");
-  music.currentTime = 20;
-  music.play();
+let current = 1;
+
+function next(){
+    document.getElementById("p"+current).classList.remove("active");
+    current++;
+    document.getElementById("p"+current).classList.add("active");
 }
 
-function checkPass(){
-  let password = document.getElementById("pass").value;
-  if(password === "1234"){
-    nextPage(2);
-    typeWriter("text2","ตั้งแต่มีเธอเข้ามา ชีวิตเค้าก็พิเศษขึ้นทุกวัน 💗");
-  }else{
-    alert("รหัสไม่ถูกนะงับ 💔");
-  }
-}
-
-function nextPage(page){
-  let pages = document.querySelectorAll(".page");
-  pages.forEach(p => p.classList.remove("active"));
-  document.getElementById("page"+page).classList.add("active");
-
-  if(page==3){
-    typeWriter("text3","เค้าอาจไม่เก่งที่สุด แต่จะรักเธอที่สุดนะ 🥺");
-  }
-  if(page==4){
-    typeWriter("text4","ขออยู่ข้างเธอไปเรื่อย ๆ แบบนี้ตลอดไปได้ไหม 💞");
-  }
-}
-
-function goHome(){
-  let pages = document.querySelectorAll(".page");
-  pages.forEach(p => p.classList.remove("active"));
-  document.getElementById("start").classList.add("active");
-}
-
-function typeWriter(id,text){
-  let i=0;
-  document.getElementById(id).innerHTML="";
-  function typing(){
-    if(i<text.length){
-      document.getElementById(id).innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing,50);
-    }
-  }
-  typing();
+function home(){
+    document.getElementById("p"+current).classList.remove("active");
+    current = 1;
+    document.getElementById("p1").classList.add("active");
 }
 </script>
 
