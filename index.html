@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love</title>
+<title>For You 💌</title>
 
 <style>
 body{
     margin:0;
-    background:#070d1a;
+    background:#0b1020;
     color:white;
     font-family:sans-serif;
     overflow:hidden;
@@ -24,169 +24,219 @@ body{
     position:absolute;
     top:0;
     left:0;
-}
-
-.active{
-    display:flex;
-}
-
-.number{
-    position:absolute;
-    top:40px;
-    font-size:70px;
-    opacity:0.8;
-}
-
-.text{
-    font-size:32px;
     text-align:center;
-    padding:0 20px;
+    padding:20px;
 }
+
+.active{ display:flex; }
 
 button{
     position:absolute;
     bottom:40px;
     right:40px;
-    font-size:30px;
-    padding:10px 20px;
-    background:white;
+    font-size:28px;
+    padding:10px 18px;
     border:none;
-    border-radius:50px;
+    border-radius:40px;
+    background:white;
 }
 
-/* หน้า 5 รูป 3 แถวฟันปลา */
-.grid{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+.start-btn{
+    position:static;
+    font-size:32px;
+    padding:15px 30px;
 }
 
+/* หน้า1 */
 .row{
     display:flex;
-    gap:20px;
-}
-
-.row:nth-child(even){
-    margin-left:60px;
+    align-items:center;
+    gap:30px;
 }
 
 .img{
-    width:100px;
-    height:100px;
+    width:120px;
+    height:120px;
     object-fit:cover;
     border:6px solid gold;
+}
+
+input{
+    padding:10px;
+    font-size:18px;
+    text-align:center;
+    border-radius:10px;
+    border:none;
+}
+
+/* ตัวหนังสือพิมพ์ทีละตัว */
+.type{
+    font-size:28px;
+    min-height:60px;
+}
+
+/* หน้า4 รูป 3 แถวฟันปลา + เลื่อน */
+.slider{
+    width:200%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    animation:move 20s linear infinite;
+}
+
+@keyframes move{
+    from{ transform:translateX(-10%); }
+    to{ transform:translateX(10%); }
+}
+
+.grid-row{
+    display:flex;
+    gap:15px;
+}
+
+.grid-row:nth-child(even){
+    margin-left:60px;
 }
 
 /* อิโมจิลอย */
 .emoji{
     position:fixed;
-    bottom:-50px;
-    font-size:24px;
+    bottom:-40px;
     animation:floatUp linear infinite;
-    opacity:0.8;
+    opacity:0.9;
 }
 
 @keyframes floatUp{
-    from{
-        transform:translateY(0);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-110vh);
-        opacity:0;
-    }
+    from{ transform:translateY(0); opacity:1; }
+    to{ transform:translateY(-110vh); opacity:0; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- เพลง -->
 <audio id="bgm" src="music.mp3"></audio>
 
-<!-- หน้า1 -->
-<div class="page active" id="p1">
-<div class="number">1</div>
-<div class="text">ข้อความแรกของเรา 💌</div>
-<button onclick="next()">➡️</button>
+<!-- หน้าเริ่ม -->
+<div class="page active" id="start">
+    <h1>กดเริ่มก่อนนะ 😊</h1>
+    <button class="start-btn" onclick="start()">เริ่ม</button>
+</div>
+
+<!-- หน้า1 ใส่รหัส -->
+<div class="page" id="p1">
+    <div class="row">
+        <img src="photo.jpg" class="img">
+        <div>
+            <div>ใส่รหัสเพื่อเข้า 💖</div>
+            <input type="password" id="pass">
+        </div>
+        <img src="photo.jpg" class="img">
+    </div>
+    <button onclick="check()">➡️</button>
 </div>
 
 <!-- หน้า2 -->
 <div class="page" id="p2">
-<div class="number">2</div>
-<div class="text">บิ้วอารมณ์ต่ออีกนิด 💕</div>
-<button onclick="next()">➡️</button>
+    <div class="type" id="text2"></div>
+    <button onclick="next(3)">➡️</button>
 </div>
 
 <!-- หน้า3 -->
 <div class="page" id="p3">
-<div class="number">3</div>
-<div class="text">ความในใจที่อยากบอก 💖</div>
-<button onclick="next()">➡️</button>
+    <div class="type" id="text3"></div>
+    <button onclick="next(4)">➡️</button>
 </div>
 
-<!-- หน้า5 (สุดท้าย) -->
+<!-- หน้า4 รวมรูป -->
 <div class="page" id="p4">
-<div class="number">4</div>
 
-<div class="grid">
-    <div class="row">
-        <img src="photo.jpg" class="img">
-        <img src="photo.jpg" class="img">
-        <img src="photo.jpg" class="img">
+    <div class="slider">
+        <div class="grid-row">
+            <img src="photo.jpg" class="img">
+            <img src="photo.jpg" class="img">
+            <img src="photo.jpg" class="img">
+        </div>
+        <div class="grid-row">
+            <img src="photo.jpg" class="img">
+            <img src="photo.jpg" class="img">
+            <img src="photo.jpg" class="img">
+        </div>
+        <div class="grid-row">
+            <img src="photo.jpg" class="img">
+            <img src="photo.jpg" class="img">
+            <img src="photo.jpg" class="img">
+        </div>
     </div>
 
-    <div class="row">
-        <img src="photo.jpg" class="img">
-        <img src="photo.jpg" class="img">
-        <img src="photo.jpg" class="img">
-    </div>
-
-    <div class="row">
-        <img src="photo.jpg" class="img">
-        <img src="photo.jpg" class="img">
-        <img src="photo.jpg" class="img">
-    </div>
-</div>
-
+    <button onclick="backStart()">💌</button>
 </div>
 
 <script>
-let current = 1;
+/* เริ่มเว็บ + เพลงวิที่20 */
+function start(){
+    document.getElementById("start").classList.remove("active");
+    document.getElementById("p1").classList.add("active");
+
+    const audio = document.getElementById("bgm");
+    audio.currentTime = 20;
+    audio.play();
+}
+
+/* เช็ครหัส */
+function check(){
+    const pass = document.getElementById("pass").value;
+    if(pass === "1234"){   // เปลี่ยนรหัสตรงนี้ได้
+        next(2);
+        typeText("text2","รู้ไหมว่าเธอสำคัญกับเรามากแค่ไหน 💕");
+    }else{
+        alert("รหัสไม่ถูกนะ 😊");
+    }
+}
 
 /* เปลี่ยนหน้า */
-function next(){
-    document.getElementById("p"+current).classList.remove("active");
-    current++;
-    document.getElementById("p"+current).classList.add("active");
+function next(page){
+    document.querySelector(".active").classList.remove("active");
+    document.getElementById("p"+page).classList.add("active");
 
-    // เล่นเพลงเมื่อเข้าหน้าแรกที่กด
-    const audio = document.getElementById("bgm");
-    if(audio.paused){
-        audio.currentTime = 20; // เริ่มที่วินาที 20
-        audio.play();
+    if(page===3){
+        typeText("text3","เรารักเธอมากจริงๆนะ ขอบคุณที่อยู่ด้วยกันเสมอ 💖");
     }
+}
+
+/* กลับหน้าแรก */
+function backStart(){
+    document.querySelector(".active").classList.remove("active");
+    document.getElementById("start").classList.add("active");
+}
+
+/* พิมพ์ทีละตัว */
+function typeText(id,text){
+    let i=0;
+    document.getElementById(id).innerHTML="";
+    const interval=setInterval(()=>{
+        document.getElementById(id).innerHTML += text[i];
+        i++;
+        if(i>=text.length) clearInterval(interval);
+    },50);
 }
 
 /* อิโมจิลอย */
 function createEmoji(){
-    const emoji = document.createElement("div");
+    const emoji=document.createElement("div");
     emoji.classList.add("emoji");
 
-    const emojis = ["💖","💘","💝","✨","🌸","💕"];
-    emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+    const list=["❤️","💖","😊","😍","😘","🥰"];
+    emoji.innerText=list[Math.floor(Math.random()*list.length)];
 
-    emoji.style.left = Math.random()*100 + "vw";
-    emoji.style.animationDuration = (4 + Math.random()*4) + "s";
-    emoji.style.fontSize = (20 + Math.random()*30) + "px";
+    emoji.style.left=Math.random()*100+"vw";
+    emoji.style.fontSize=(20+Math.random()*30)+"px";
+    emoji.style.animationDuration=(4+Math.random()*4)+"s";
 
     document.body.appendChild(emoji);
 
-    setTimeout(()=>{
-        emoji.remove();
-    },8000);
+    setTimeout(()=>{ emoji.remove(); },8000);
 }
-
 setInterval(createEmoji,500);
 </script>
 
