@@ -1,40 +1,103 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Valentine</title>
 
 <style>
 body{
-    margin:0;
-    padding:0;
-    background:#f8f8f8;
-    font-family: serif;
-    text-align:center;
-    overflow-x:hidden;
+  margin:0;
+  font-family:sans-serif;
+  background:#000;
+  color:white;
+  overflow:hidden;
+  text-align:center;
 }
 
 .page{
-    display:none;
-    padding:40px 20px;
+  display:none;
+  height:100vh;
+  width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  position:absolute;
+}
+
+.active{
+  display:flex;
 }
 
 button{
-    padding:18px 40px;
-    border:none;
-    border-radius:20px;
-    background:#ff7eb9;
-    color:white;
-    font-size:20px;
-    margin-top:30px;
+  font-size:30px;
+  padding:10px 25px;
+  border:none;
+  border-radius:50px;
+  background:#ff4d88;
+  color:white;
+  margin-top:30px;
+}
+
+input{
+  padding:10px;
+  font-size:20px;
+  text-align:center;
+  border-radius:10px;
+  border:none;
+}
+
+img{
+  max-width:80%;
+  border-radius:20px;
+  margin:10px;
 }
 
 .typewriter{
-    max-width:380px;
-    margin:0 auto;
-    line-height:1.9;
-    font-size:20px;
+  font-size:20px;
+  white-space:pre-line;
+  max-width:85%;
+  line-height:1.6;
+}
+
+.gallery{
+  width:100%;
+  overflow:hidden;
+}
+
+.row{
+  display:flex;
+  width:max-content;
+  animation:slide 60s linear infinite;
+}
+
+.row:nth-child(2){
+  animation-duration:55s;
+}
+
+.row:nth-child(3){
+  animation-duration:60s;
+}
+
+.row img{
+  height:150px;
+  margin:10px;
+  border-radius:20px;
+}
+
+@keyframes slide{
+  from{ transform:translateX(-50%); }
+  to{ transform:translateX(0); }
+}
+
+.emoji{
+  position:absolute;
+  font-size:25px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{ transform:translateY(100vh); opacity:1;}
+  to{ transform:translateY(-10vh); opacity:0;}
 }
 </style>
 </head>
@@ -42,86 +105,160 @@ button{
 <body>
 
 <!-- หน้าเริ่ม -->
-<div class="page" id="startPage" style="display:block;">
-    <h2>กดเริ่มก่อนนะ 💗</h2>
-    <button onclick="start()">เริ่ม</button>
+<div class="page active" id="start">
+  <h1>กดเริ่มได้เลยนะ 💖</h1>
+  <button onclick="nextPage(1)">➡️</button>
 </div>
 
-<!-- หน้าใส่รหัส -->
+<!-- หน้า1 ใส่รหัส -->
 <div class="page" id="page1">
-    <h3>ใส่วันเกิดเธอ🎂</h3>
-    <input type="password" id="pass">
-    <br><br>
-    <button onclick="checkPass()">เข้าไปเลย</button>
+  <img src="IMG_1992.jpeg">
+  <h3>ลองใส่วันเกิดเธอดูจิ</h3>
+  <input id="code" type="password">
+  <img src="IMG_1993.jpeg">
+  <button onclick="checkCode()">➡️</button>
 </div>
 
-<!-- หน้าข้อความ -->
+<!-- หน้า2 -->
 <div class="page" id="page2">
-    <div class="typewriter" id="text2"></div>
-    <button onclick="goPage3()">➡️</button>
+  <div class="typewriter" id="text2"></div>
+  <button onclick="nextPage(3)">➡️</button>
 </div>
 
-<!-- หน้าสุดท้าย -->
+<!-- หน้า3 -->
 <div class="page" id="page3">
-    <div class="typewriter" id="text3"></div>
+  <div class="typewriter" id="text3"></div>
+  <button onclick="nextPage(4)">➡️</button>
+</div>
+
+<!-- หน้า4 -->
+<div class="page" id="page4">
+  <div class="gallery">
+
+    <div class="row">
+      <img src="IMG_9257.jpeg">
+      <img src="IMG_1965.jpeg">
+      <img src="IMG_4732.jpeg">
+      <img src="IMG_5565.jpeg">
+      <img src="IMG_1988.jpeg">
+      <img src="IMG_5234.jpeg">
+      <img src="IMG_5705.jpeg">
+      <img src="IMG_4872.jpeg">
+      <img src="IMG_9662.jpeg">
+
+      <img src="IMG_9257.jpeg">
+      <img src="IMG_1965.jpeg">
+      <img src="IMG_4732.jpeg">
+      <img src="IMG_5565.jpeg">
+      <img src="IMG_1988.jpeg">
+      <img src="IMG_5234.jpeg">
+      <img src="IMG_5705.jpeg">
+      <img src="IMG_4872.jpeg">
+      <img src="IMG_9662.jpeg">
+    </div>
+
+    <div class="row">
+      <img src="IMG_5565.jpeg">
+      <img src="IMG_1988.jpeg">
+      <img src="IMG_5234.jpeg">
+      <img src="IMG_5705.jpeg">
+      <img src="IMG_4872.jpeg">
+      <img src="IMG_9662.jpeg">
+      <img src="IMG_9257.jpeg">
+      <img src="IMG_1965.jpeg">
+      <img src="IMG_4732.jpeg">
+
+      <img src="IMG_5565.jpeg">
+      <img src="IMG_1988.jpeg">
+      <img src="IMG_5234.jpeg">
+      <img src="IMG_5705.jpeg">
+      <img src="IMG_4872.jpeg">
+      <img src="IMG_9662.jpeg">
+      <img src="IMG_9257.jpeg">
+      <img src="IMG_1965.jpeg">
+      <img src="IMG_4732.jpeg">
+    </div>
+
+    <div class="row">
+      <img src="IMG_5705.jpeg">
+      <img src="IMG_4872.jpeg">
+      <img src="IMG_9662.jpeg">
+      <img src="IMG_9257.jpeg">
+      <img src="IMG_1965.jpeg">
+      <img src="IMG_4732.jpeg">
+      <img src="IMG_5565.jpeg">
+      <img src="IMG_1988.jpeg">
+      <img src="IMG_5234.jpeg">
+
+      <img src="IMG_5705.jpeg">
+      <img src="IMG_4872.jpeg">
+      <img src="IMG_9662.jpeg">
+      <img src="IMG_9257.jpeg">
+      <img src="IMG_1965.jpeg">
+      <img src="IMG_4732.jpeg">
+      <img src="IMG_5565.jpeg">
+      <img src="IMG_1988.jpeg">
+      <img src="IMG_5234.jpeg">
+    </div>
+
+  </div>
+  <button onclick="nextPage(0)">💌</button>
 </div>
 
 <script>
-function hideAll(){
-    document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+function nextPage(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(page==0?"start":"page"+page).classList.add("active");
+
+  if(page==2) typeWriter("text2",text2);
+  if(page==3) typeWriter("text3",text3);
 }
 
-function start(){
-    hideAll();
-    document.getElementById("page1").style.display="block";
+function checkCode(){
+  if(document.getElementById("code").value==="100643"){
+    nextPage(2);
+  }else{
+    alert("ผิดง่าาา 💔");
+  }
 }
 
-function checkPass(){
-    if(document.getElementById("pass").value==="1234"){   // เปลี่ยนรหัสได้ตรงนี้
-        hideAll();
-        document.getElementById("page2").style.display="block";
-        typeWriter("text2",
-        `🌻 Happy Valentine Day 🌹
+let text2=`🌻Happy Valentine Day🌹
 
 สุขสันต์วันวาเลนไทน์นะค้าบ
 ขอให้เป็นเทศกาลแห่งความรักที่มีความสุขนะ
 ขอให้มีแต่ช่วงเวลาที่สวยงาม
-ขอให้มีแต่ความสดใสร่าเริง
-ยิ้มให้กว้างกว่าทุกๆวัน
-แล้วก็ขอให้เธออยู่เป็นของขวัญ
-วันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ
-เค้าจะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้
-และเค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป 💖`);
-    }else{
-        alert("ใส่ใหม่อีกทีน้า 💕");
+ขอให้มีแต่ความสดใส ยิ้มให้กว้างกว่าทุกๆวัน
+แล้วก็ขอให้เธออยู่เป็นของขวัญวันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ
+เค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป
+และจะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้`;
+
+let text3=`ขอบคุณเธอมากๆนะที่เข้ามาในชีวิตเค้า
+อยู่เป็นของขวัญให้เค้าไปทุกๆเทศกาลเลยนะ
+เค้ารักเธอนะ🫶🏻❤️`;
+
+function typeWriter(id,text){
+  let i=0;
+  document.getElementById(id).innerHTML="";
+  let speed=40;
+  function typing(){
+    if(i<text.length){
+      document.getElementById(id).innerHTML+=text.charAt(i);
+      i++;
+      setTimeout(typing,speed);
     }
+  }
+  typing();
 }
 
-function goPage3(){
-    hideAll();
-    document.getElementById("page3").style.display="block";
-    typeWriter("text3",
-    `ขอบคุณเธอมากๆนะที่เข้ามาในชีวิตเค้า
-อยู่เป็นของขวัญให้เค้าไปทุกเทศกาลเลยนะ
-เค้ารักเธอนะ 🤍❤️`);
-}
-
-function typeWriter(id, text){
-    let i = 0;
-    document.getElementById(id).innerHTML = "";
-    function typing(){
-        if(i < text.length){
-            if(text.charAt(i) === "\n"){
-                document.getElementById(id).innerHTML += "<br>";
-            }else{
-                document.getElementById(id).innerHTML += text.charAt(i);
-            }
-            i++;
-            setTimeout(typing, 40);
-        }
-    }
-    typing();
-}
+const emojis=["❤️","💖","😊","😍","😘","🥰"];
+setInterval(()=>{
+  let e=document.createElement("div");
+  e.className="emoji";
+  e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
+},800);
 </script>
 
 </body>
