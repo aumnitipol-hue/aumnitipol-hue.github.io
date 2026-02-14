@@ -28,7 +28,7 @@ body{
 #start{display:flex;}
 
 button{
-    font-size:28px;
+    font-size:24px;
     padding:12px 28px;
     border:none;
     border-radius:20px;
@@ -55,11 +55,11 @@ input{
 
 .typewriter{
     white-space:pre-line;
-    font-size:20px;
+    font-size:18px;
     max-width:90%;
 }
 
-/* ===== หน้า 4 ===== */
+/* ===== gallery ===== */
 .gallery-wrapper{
     width:100%;
     overflow:hidden;
@@ -100,8 +100,9 @@ input{
 .emoji{
     position:fixed;
     font-size:22px;
-    animation:floatUp 5s linear infinite;
+    animation:floatUp linear forwards;
 }
+
 @keyframes floatUp{
     0%{transform:translateY(100vh);opacity:1;}
     100%{transform:translateY(-10vh);opacity:0;}
@@ -116,118 +117,113 @@ input{
 <!-- หน้าเริ่ม -->
 <div class="page" id="start">
     <h1>กดเริ่มก่อนน้า 💕</h1>
-    <button onclick="startApp()">เริ่ม</button>
+    <button id="startBtn">เริ่ม</button>
 </div>
 
 <!-- หน้าใส่รหัส -->
 <div class="page" id="page1">
     <img src="IMG_1992.jpeg" class="img-top">
     <h3>ลองใส่วันเกิดเธอดูจิ 💌</h3>
-
-    <!-- ช่องรหัส -->
     <input type="password" id="pass">
-
-    <!-- ปุ่มอยู่ใต้ช่องรหัส -->
-    <button onclick="checkPass()">➡️</button>
-
+    <button id="passBtn">➡️</button>
     <img src="IMG_1993.jpeg" class="img-bottom">
 </div>
 
 <!-- หน้า2 -->
 <div class="page" id="page2">
     <div class="typewriter" id="text2"></div>
-    <button onclick="showPage(3)">➡️</button>
+    <button onclick="goPage3()">➡️</button>
 </div>
 
 <!-- หน้า3 -->
 <div class="page" id="page3">
     <div class="typewriter" id="text3"></div>
-    <button onclick="showPage(4)">➡️</button>
+    <button onclick="goPage4()">➡️</button>
 </div>
 
 <!-- หน้า4 -->
 <div class="page" id="page4">
-
 <div class="gallery-wrapper">
 
-<div class="row row1">
-<div class="track">
+<div class="row row1"><div class="track">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
-</div>
-</div>
+</div></div>
 
-<div class="row row2">
-<div class="track">
+<div class="row row2"><div class="track">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
-</div>
-</div>
+</div></div>
 
-<div class="row row3">
-<div class="track">
+<div class="row row3"><div class="track">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
 <img src="IMG_5705.jpeg"><img src="IMG_4872.jpeg"><img src="IMG_9662.jpeg">
 <img src="IMG_9257.jpeg"><img src="IMG_1965.jpeg"><img src="IMG_4732.jpeg">
 <img src="IMG_5565.jpeg"><img src="IMG_1988.jpeg"><img src="IMG_5234.jpeg">
-</div>
-</div>
+</div></div>
 
 </div>
-
-<button onclick="showPage(1)">💌</button>
+<button onclick="goPage1()">💌</button>
 </div>
 
 <script>
 
-function startApp(){
-document.getElementById("music").src=
-"https://www.youtube.com/embed/guCCAF-fkNI?start=20&autoplay=1";
-showPage(1);
-}
-
-function showPage(num){
+function hideAll(){
 document.querySelectorAll(".page").forEach(p=>p.style.display="none");
-document.getElementById("page"+num).style.display="flex";
-
-if(num===2){
-typeWriter("text2",`
-   🌻Happy Valentine Day🌹<br>
-สุขสันต์วันวาเลนไทน์นะค้าบ <br>
-ขอให้เป็นเทศกาลแห่งความรักที่มีความสุขนะ <br>
-ขอให้มีแต่ช่วงเวลาที่สวยงาม<br>
-ขอให้มีแต่ความสดใสร่าเริง <br>
-ยิ้มให้กว้างกว่าทุกๆวัน <br>
-แล้วก็ขอให้เธออยู่เป็นของขวัญวันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ <br>
-เค้าจะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้ <br>
-และเค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป `); <br>
 }
 
-if(num===3){
-typeWriter("text3",`
-ขอบคุณเธอมากๆนะที่เข้ามาในชีวิตเค้า. <br>
-        อยู่เป็นของขวัญให้เราไปทุกๆเทศกาลเลยนะ <br>
-เค้ารักเธอนะ🫶🏻❤️`); <br>
-}
+document.getElementById("startBtn").addEventListener("click",function(){
+document.getElementById("music").src="https://www.youtube.com/embed/guCCAF-fkNI?start=20&autoplay=1";
+hideAll();
+document.getElementById("page1").style.display="flex";
+});
 
-}
-
-function checkPass(){
+document.getElementById("passBtn").addEventListener("click",function(){
 if(document.getElementById("pass").value==="100643"){
-showPage(2);
+hideAll();
+document.getElementById("page2").style.display="flex";
+typeWriter("text2",
+"🌻Happy Valentine Day🌹\n\n"+
+"สุขสันต์วันวาเลนไทน์นะค้าบ\n"+
+"ขอให้เป็นเทศกาลแห่งความรักที่มีความสุขนะ\n"+
+"ขอให้มีแต่ช่วงเวลาที่สวยงาม\n"+
+"ขอให้มีแต่ความสดใสร่าเริง\n"+
+"ยิ้มให้กว้างกว่าทุกๆวัน\n"+
+"แล้วก็ขอให้เธออยู่เป็นของขวัญวันวาเลนไทน์ให้เค้าไปทุกๆปีเลยนะ\n"+
+"เค้าจะคอยซัพพอร์ตเธอในทุกๆเรื่องที่เค้าทำได้\n"+
+"และเค้าจะคอยอยู่ข้างๆเธอแบบนี้ตลอดไป 💖");
 }else{
 alert("ใส่ใหม่อีกทีน้าา 💕");
 }
+});
+
+function goPage3(){
+hideAll();
+document.getElementById("page3").style.display="flex";
+typeWriter("text3",
+"ขอบคุณเธอมากๆนะที่เข้ามาในชีวิตเค้า.\n"+
+"อยู่เป็นของขวัญให้เราไปทุกๆเทศกาลเลยนะ\n"+
+"เค้ารักเธอนะ🫶🏻❤️");
+}
+
+function goPage4(){
+hideAll();
+document.getElementById("page4").style.display="flex";
+}
+
+function goPage1(){
+hideAll();
+document.getElementById("page1").style.display="flex";
 }
 
 function typeWriter(id,text){
@@ -244,15 +240,15 @@ setTimeout(typing,40);
 typing();
 }
 
-/* emoji */
 setInterval(()=>{
 let e=document.createElement("div");
 e.className="emoji";
 e.style.left=Math.random()*100+"vw";
+e.style.animationDuration=(3+Math.random()*3)+"s";
 e.innerText=["❤️","💖","😊","😍","😘","🥰"][Math.floor(Math.random()*6)];
 document.body.appendChild(e);
-setTimeout(()=>e.remove(),5000);
-},800);
+setTimeout(()=>e.remove(),6000);
+},700);
 
 </script>
 
